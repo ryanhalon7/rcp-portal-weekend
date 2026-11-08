@@ -1,0 +1,132 @@
+/* History is a lookup tool: search and records lead; fulfillment and paperwork
+   remain distinct. Reuse the portal purchase tokens and 4px spacing rhythm. */
+.portal[data-screen="orders"] .topbar .global-search { display: none; }
+.portal[data-screen="orders"] .topbar-actions { margin-left: auto; }
+.portal .history-heading { margin: 16px 0 20px; align-items: center; }
+.portal .history-heading h1 { font-size: 28px; }
+.portal .history-heading p { margin-top: 6px; font-size: 13px; }
+.history-tabs { display: flex; gap: 24px; border-bottom: 1px solid var(--purchase-border); margin-bottom: 24px; }
+.history-tabs button { display: flex; align-items: center; gap: 8px; padding: 0 4px 12px; min-height: 48px; font-size: 14px; border-bottom: 2px solid transparent; color: var(--purchase-supporting); }
+.history-tabs button[aria-selected="true"] { color: var(--purchase-focus); border-bottom-color: var(--brand); font-weight: 600; }
+.history-tabs small { padding: 3px 7px; border-radius: 999px; background: var(--purchase-control); color: var(--purchase-metadata); font-size: 11px; font-variant-numeric: tabular-nums; }
+.portal .history-workspace,.portal .history-items { --ss-card-pad: 0; min-width: 0; }
+.history-toolbar { display: flex; align-items: center; gap: 16px; padding: 20px 24px 8px; }
+.history-search { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; height: 46px; border: 1px solid var(--purchase-control-border); border-radius: 12px; padding: 0 12px; background: var(--purchase-control); color: var(--purchase-metadata); }
+.history-search input { width: 100%; min-width: 0; height: 44px; background: transparent; border: 0; color: var(--purchase-ink); font: inherit; font-size: 14px; }
+.history-search input::placeholder { color: var(--purchase-metadata); }
+.portal .history-search input:focus-visible { outline: none; }
+.history-search.keyboard-navigation:focus-within { outline: 2px solid var(--purchase-focus); outline-offset: 3px; }
+.history-toolbar > div { display: flex; gap: 12px; align-items: center; }
+.history-toolbar > div > label { display: flex; gap: 6px; align-items: center; font-size: 12px; color: var(--purchase-supporting); }
+.history-toolbar select { height: 44px; max-width: 170px; min-width: 0; background: var(--ss-surface); border: 0; color: var(--purchase-ink); font: inherit; font-size: 12px; }
+.history-results { display: flex; justify-content: space-between; gap: 8px; align-items: center; min-height: 44px; padding: 0 24px 8px; font-size: 12px; color: var(--purchase-metadata); }
+.history-results > button { display: flex; align-items: center; gap: 6px; min-height: 44px; color: var(--purchase-focus); font-size: 12px; }
+.history-column-labels,.history-record-link { display: grid; grid-template-columns: minmax(160px,1fr) 144px 176px 120px 20px; align-items: center; gap: 16px; }
+.history-column-labels { padding: 12px 24px; background: var(--purchase-control); font-size: 11px; color: var(--purchase-metadata); }
+.history-column-labels > span:nth-last-child(2) { text-align: right; }
+.history-records { list-style: none; margin: 0; padding: 0; }
+.history-record-link { padding: 24px; border-top: 1px solid var(--purchase-border); min-height: 100px; color: var(--purchase-ink); border-radius: 4px; }
+.history-records li:last-child .history-record-link { border-radius: 0 0 24px 24px; }
+.history-record-link:hover { background: var(--purchase-hover); }
+.history-record-link:focus-visible { outline-offset: -3px; }
+.history-record-name { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.history-record-name > strong { color: var(--purchase-focus); font-size: 14px; font-weight: 600; }
+.history-record-name > small { color: var(--purchase-metadata); font-size: 11px; }
+.history-record-link > time { font-size: 12px; color: var(--purchase-supporting); }
+.history-record-total { font-size: 15px; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+.history-record-link > svg { color: var(--purchase-metadata); }
+.history-empty,.history-state { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; min-height: 300px; padding: 40px 24px; text-align: center; color: var(--purchase-metadata); }
+.history-empty h2,.history-state h2 { font-size: 22px; color: var(--purchase-ink); }
+.history-empty p,.history-state p { color: var(--purchase-supporting); max-width: 440px; font-size: 13px; line-height: 1.6; }
+.history-state > div { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.portal .history-page .ss-button { min-height: 44px; font-size: 13px; }
+.history-back { display: inline-flex; gap: 8px; align-items: center; min-height: 44px; margin-bottom: 12px; color: var(--purchase-focus); font-size: 13px; }
+.history-reorder-action { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; background: var(--purchase-focus); color: var(--ss-surface); font-size: 13px; font-weight: 600; flex-shrink: 0; }
+.history-reorder-action:hover { filter: brightness(.95); }
+.history-detail-layout { display: grid; grid-template-columns: minmax(0,1fr) 300px; gap: 20px; align-items: start; }
+.history-detail-main,.history-detail-aside { display: grid; gap: 20px; min-width: 0; }
+.history-card-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.history-card-heading h2,.history-document-card h2 { font-size: 18px; font-weight: 550; color: var(--purchase-ink); }
+.history-card-heading > span:not(.ss-badge) { color: var(--purchase-metadata); font-size: 11px; }
+.history-items > .history-card-heading { padding: 24px; }
+.history-item { display: grid; grid-template-columns: minmax(0,1fr) 72px 88px; gap: 16px; align-items: center; padding: 20px 24px; border-top: 1px solid var(--purchase-border); }
+.history-product { display: flex; gap: 12px; min-width: 0; align-items: center; border-radius: 8px; color: inherit; }
+.history-product > div:last-child { min-width: 0; }
+.history-product h3 { display: flex; align-items: baseline; gap: 6px; font-size: 14px; font-weight: 600; color: var(--purchase-ink); line-height: 1.4; }
+.history-product h3 > svg { flex-shrink: 0; color: var(--purchase-metadata); }
+.history-product:hover h3 { text-decoration: underline; text-underline-offset: 3px; color: var(--purchase-focus); }
+.history-product p { margin-top: 4px; font-size: 12px; color: var(--purchase-supporting); line-height: 1.5; }
+.history-product small { display: block; margin-top: 4px; font-size: 10px; color: var(--purchase-metadata); }
+.history-product > div:last-child > span { display: block; font-size: 12px; color: var(--purchase-supporting); margin-top: 6px; }
+.history-product > div:last-child > .history-item-approval { display: flex; align-items: flex-start; gap: 5px; font-size: 11px; line-height: 1.5; color: var(--purchase-metadata); }
+.history-item-approval > svg { flex-shrink: 0; }
+.history-product-art { width: 44px; height: 60px; border-radius: 10px; flex-shrink: 0; display: grid; place-items: center; }
+.history-item-quantity { font-size: 12px; color: var(--purchase-supporting); text-align: right; }
+.history-item > strong { color: var(--purchase-ink); text-align: right; font-size: 15px; font-variant-numeric: tabular-nums; font-weight: 600; }
+.history-recorded-total { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 20px 24px; border-top: 1px solid var(--purchase-border); color: var(--purchase-ink); font-size: 13px; }
+.history-recorded-total strong { font-size: 22px; font-weight: 550; font-variant-numeric: tabular-nums; }
+.history-price-note { padding: 0 24px 20px; font-size: 12px; color: var(--purchase-metadata); line-height: 1.6; }
+.history-timeline { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 20px; }
+.history-timeline li { display: flex; gap: 10px; align-items: flex-start; }
+.history-timeline svg { color: var(--purchase-focus); flex-shrink: 0; }
+.history-timeline strong { display: block; font-size: 13px; color: var(--purchase-ink); font-weight: 600; }
+.history-timeline span,.history-timeline p { display: block; font-size: 12px; color: var(--purchase-supporting); line-height: 1.6; margin-top: 4px; }
+.history-document-card > svg { color: var(--purchase-focus); margin-bottom: 12px; }
+.history-document-card h2 { margin-bottom: 12px; }
+.history-document-card p { color: var(--purchase-supporting); font-size: 13px; line-height: 1.6; margin-bottom: 16px; }
+.history-document-card .ss-button { width: 100%; }
+.history-invoice-link { display: flex; gap: 12px; justify-content: space-between; align-items: center; min-height: 64px; border-top: 1px solid var(--purchase-border); padding-top: 12px; color: var(--purchase-focus); }
+.history-invoice-link > span { display: flex; flex-direction: column; gap: 6px; }
+.history-invoice-link strong { font-size: 13px; font-weight: 600; }
+.history-invoice-link small { font-size: 12px; color: var(--purchase-metadata); }
+.history-invoice-summary dl { display: grid; margin: 16px 0; }
+.history-invoice-summary dl > div { display: flex; gap: 16px; align-items: baseline; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--purchase-border); font-size: 13px; }
+.history-invoice-summary dt { color: var(--purchase-supporting); }
+.history-invoice-summary dd { margin: 0; text-align: right; color: var(--purchase-ink); }
+.history-invoice-summary dd a { display: inline-flex; align-items: center; gap: 6px; color: var(--purchase-focus); min-height: 44px; }
+.history-invoice-amount { font-size: 22px; font-weight: 550; font-variant-numeric: tabular-nums; }
+.history-invoice-summary > p { color: var(--purchase-metadata); font-size: 12px; line-height: 1.6; }
+.history-sample-note { display: flex; gap: 8px; align-items: flex-start; margin: 20px 0 32px; color: var(--purchase-metadata); font-size: 11px; line-height: 1.6; }
+.history-sample-note > svg { flex-shrink: 0; margin-top: 2px; }
+@media (max-width: 1250px) {
+  .history-detail-layout { grid-template-columns: minmax(0,1fr); }
+  .history-detail-aside { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .history-column-labels,.history-record-link { grid-template-columns: minmax(144px,1fr) 112px 154px 100px 16px; gap: 12px; }
+}
+@media (max-width: 1000px) {
+  .history-toolbar { flex-wrap: wrap; }
+  .history-search { flex-basis: 100%; }
+  .history-toolbar > div { width: 100%; justify-content: space-between; }
+  .history-column-labels { display: none; }
+  .history-record-link { grid-template-columns: minmax(0,1fr) auto; gap: 12px; }
+  .history-record-name { grid-column: 1; grid-row: 1; }
+  .history-record-status { grid-column: 2; grid-row: 1; text-align: right; }
+  .history-record-link > time { grid-column: 1; grid-row: 2; }
+  .history-record-total { grid-column: 2; grid-row: 2; }
+  .history-record-link > svg { display: none; }
+}
+@media (max-width: 600px) {
+  .portal .history-heading { align-items: flex-start; flex-wrap: wrap; gap: 12px; }
+  .portal .history-heading h1 { font-size: 24px; }
+  .history-tabs { margin-bottom: 16px; }
+  .history-toolbar { padding: 16px 16px 4px; gap: 8px; }
+  .history-toolbar > div { flex-wrap: wrap; gap: 4px 12px; }
+  .history-toolbar select { max-width: 150px; }
+  .history-results { padding-inline: 16px; }
+  .history-record-link { padding: 20px 16px; }
+  .history-record-name > strong { font-size: 13px; }
+  .history-record-total { font-size: 14px; }
+  .history-detail-aside { grid-template-columns: minmax(0,1fr); }
+  .history-item { grid-template-columns: minmax(0,1fr) auto; padding: 16px; gap: 12px; }
+  .history-product { grid-column: 1 / -1; }
+  .history-item-quantity { text-align: left; padding-left: 56px; }
+  .history-items > .history-card-heading { padding: 20px 16px; }
+  .history-recorded-total { padding: 20px 16px; }
+  .history-price-note { padding: 0 16px 20px; }
+}
+
+.history-heading-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.portal .history-heading-meta p { margin: 0; }
+.history-invoice-items { grid-column: 1; min-width: 0; }
+
+.history-detail-aside:has(> .history-document-card:only-child) { grid-template-columns: minmax(0,1fr); }

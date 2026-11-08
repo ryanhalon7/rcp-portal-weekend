@@ -1,0 +1,70 @@
+/* Dark surfaces gain depth through lighter steps, keeping the blue action accent. */
+body:has(.portal[data-theme="dark"]) { background: #111820; }
+.theme-toggle { min-width: 36px; min-height: 36px; }
+.theme-toggle[aria-pressed="true"] { background: #24364e; color: #a5c6ff; }
+.portal[data-theme="dark"] {
+  color-scheme: dark;
+  --ss-canvas: #111820;
+  --ss-surface: #19232e;
+  --ss-text-strong: #e1e8f0;
+  --ss-text: #b0bdcb;
+  --ss-text-faint: #9cabbc;
+  --ss-line: #303d4b;
+  --ss-line-faint: #283542;
+  --ss-ink-1: #202d3b;
+  --ss-ink-2: #253445;
+  --ss-ink-3: #304052;
+  --ss-ink-4: #3c4c5f;
+  --ss-ink-5: #51647b;
+  --ss-accent-soft: #233a5b;
+  --ss-accent-text: #a5c6ff;
+  --ss-success-soft: #223c33;
+  --ss-success-text: #a1d9b8;
+  --ss-warning-soft: #413724;
+  --ss-warning-text: #f0ce8a;
+  --ss-danger-soft: #452b30;
+  --ss-danger-text: #ffb9b0;
+  --ss-shadow-card: none;
+  color: var(--ss-text-strong);
+}
+.portal.portal[data-theme="dark"] :where(.sidebar, .topbar, .summary-strip, .profile-menu, .modal, .mobile-search) { background: var(--ss-surface); }
+.portal.portal[data-theme="dark"] :where(.sidebar, .topbar, .summary-strip, .summary-strip > button, .profile, .profile-menu, .utility-divider, .demo-label, .list-toolbar, .product-head, .product-row, .reorder-footer, .radar-item, .resource-block, th, td, .location-popover, .popover-foot, .input-wrap, .modal-header, .modal-demo-note, .modal-body .ss-row, .support-method) { border-color: var(--ss-line); }
+.portal.portal[data-theme="dark"] :where(.brand-rcp, .brand-america, .product-name, .product-price, .quantity-control input, .global-search input, .input-wrap input, .location-option strong, .empty-state strong, .support-method strong, td.number, .cart-total, textarea) { color: var(--ss-text-strong); }
+.portal.portal[data-theme="dark"] :where(.portal-label, .nav-item, .help-icon, .help-note p, .profile small, .profile > svg, .profile-menu > span, .location-trigger small, .location-trigger > svg, .location-code, .global-search, .global-search input::placeholder, .global-search kbd, .icon-button, .cart-symbol, .cart-label small, .breadcrumb, .breadcrumb > span:not(.demo-label), .demo-label, .eyebrow, .page-heading p, .stat-top, .stat-top > svg, .stat-value > span, .section-title p, .section-description, .tab-list button, .list-location, .product-head, .product-row .ss-row__subtitle, .sku, .product-price > small, .quantity-control button, .reorder-footer > span, .radar-item small, .radar-item > svg, .radar-note, .rep-heading > div > span, .rep-card > p, .rep-hours, .resource-icon, .resource-block > .eyebrow, .resource-block p, .orders-toolbar > span, .select-wrap, .select-wrap select, th, td, td small, .table-arrow, .orders-foot, .page-footer, .page-footer strong, .page-footer button, .input-wrap, .location-option, .location-option small, .popover-foot, .modal-body > p, .modal-demo-note, .empty-state, .empty-state p, .preview-disclaimer, .order-detail-top, .modal .muted, .support-person div > span, .support-method, .guide-step p) { color: var(--ss-text); }
+.portal.portal[data-theme="dark"] :where(.text-link, .order-id, .upload-label, .tab-list button.selected) { color: #a5c6ff; }
+.portal.portal[data-theme="dark"] :where(.text-link, .order-id):hover { color: #c5daff; }
+.portal.portal[data-theme="dark"] :where(.nav-item.active, .nav-item:hover, .icon-button:hover, .theme-toggle[aria-pressed="true"], .guide-step > span) { background: var(--ss-accent-soft); color: var(--ss-accent-text); }
+.portal.portal[data-theme="dark"] :where(.location-icon, .global-search, .global-search kbd, .demo-label, .tab-list button > span, .resource-block, .modal-demo-note, textarea, .preview-list) { background: #202d3b; border-color: var(--ss-line); }
+.portal[data-theme="dark"] .location-icon { color: #b0bdcb; }
+.portal[data-theme="dark"] .global-search input::placeholder { color: var(--ss-text); opacity: 1; }
+.portal[data-theme="dark"] .tab-list button > span { color: var(--ss-text); }
+.portal[data-theme="dark"] .tab-list button.selected::after { background: #8db6ff; }
+.portal.portal[data-theme="dark"] :where(.quantity-control, .select-wrap, .filter-row select, textarea) { border-color: #3c4c5f; }
+.portal.portal[data-theme="dark"] :where(.quantity-control button:not(:disabled):hover, tbody tr:hover, .order-list-button:hover) { background: #243446; }
+.portal[data-theme="dark"] .ss-button:hover { background: #253445; }
+.portal[data-theme="dark"] .ss-button[data-variant="primary"]:hover { background: #2056bb; }
+.portal.portal[data-theme="dark"] :where(.add-button, .contact-button) { background: var(--ss-surface); color: var(--ss-text-strong); box-shadow: inset 0 0 0 1px #3c4c5f; }
+.portal.portal[data-theme="dark"] :where(.add-button, .contact-button):hover { background: #253445; }
+.portal[data-theme="dark"] .utility-divider { background: var(--ss-line); }
+.portal.portal[data-theme="dark"] :where(.notification-dot, .cart-symbol > span) { border-color: var(--ss-surface); }
+.portal[data-theme="dark"] .stat-value > .amber-text,
+.portal[data-theme="dark"] .approval-label { color: #f0ce8a; }
+.portal[data-theme="dark"] .sage { background: #2c3b32; color: #b3c6a8; }
+.portal[data-theme="dark"] .blue { background: #263a50; color: #a5c5e5; }
+.portal[data-theme="dark"] .sand { background: #3b382e; color: #d2c59b; }
+.portal[data-theme="dark"] .rose { background: #3e3133; color: #d9b1a5; }
+.portal[data-theme="dark"] .amber { background: var(--ss-warning-soft); color: var(--ss-warning-text); }
+.portal[data-theme="dark"] .resource-lines span { border-color: #344559; }
+.portal[data-theme="dark"] .reorder-footer > span svg { color: #a1d9b8; }
+.portal[data-theme="dark"] .inline-note { background: var(--ss-accent-soft); color: #c0d4ee; }
+.portal[data-theme="dark"] .inline-note.amber { background: var(--ss-warning-soft); color: var(--ss-warning-text); }
+.portal[data-theme="dark"] .error-message { background: var(--ss-danger-soft); color: var(--ss-danger-text); }
+.portal[data-theme="dark"] .filter-row select { background: var(--ss-surface); color: var(--ss-text-strong); }
+.portal[data-theme="dark"] .modal-backdrop { background: #030910b3; }
+.portal[data-theme="dark"] .skip-link:focus { background: var(--ss-surface); color: var(--ss-accent-text); }
+.portal[data-theme="dark"] :focus-visible { outline-color: #a5c6ff; }
+.portal.portal[data-theme="dark"] :where(.global-search, .input-wrap):focus-within { outline-color: #a5c6ff; }
+@media (max-width: 540px) {
+  .theme-toggle { min-width: 34px; min-height: 44px; }
+  .topbar-actions { gap: 7px; }
+}

@@ -1,0 +1,67 @@
+import { chromium } from 'playwright-core'
+import assert from 'node:assert/strict'
+
+const browser = await chromium.launch({ channel: 'chrome' })
+try {
+  const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } })
+  const errors = []
+  page.on('pageerror', error => errors.push(error.message))
+  await page.goto(process.env.QA_BASE_URL || 'http://127.0.0.1:5180/', { waitUntil: 'networkidle' })
+  await page.evaluate(() => localStorage.clear())
+  await page.reload({ waitUntil: 'networkidle' })
+  const dialog = page.getByRole('dialog')
+  for (const theme of ['light', 'dark']) {
+    if (await page.locator('.portal').getAttribute('data-theme') !== theme) {
+      await page.getByRole('button', { name: theme === 'dark' ? 'Dark mode' : 'Light mode', exact: true }).click()
+    }
+    for (const width of [1440, 390, 320]) {
+      await page.setViewportSize({ width, height: 1000 })
+      await page.getByRole('button', { name: 'Order by SKU', exact: true }).click()
+      await page.getByLabel('SKU, quantity', { exact: true }).fill('INVALID,2')
+      await dialog.getByRole('button', { name: 'Review items', exact: true }).click()
+      await dialog.getByText('Row 1:', { exact: false }).waitFor()
+      assert.equal(await dialog.getByRole('button', { name: 'Add matched items to cart' }).count(), 0)
+      await dialog.locator('input[type=file]').setInputFiles({ name: 'order.csv', mimeType: 'text/csv', buffer: Buffer.from('sku,quantity\nRCP-1001,2\nRCP-1001,1\nRCP-4025,1') })
+      await page.waitForFunction(() => document.querySelector('#sku-list')?.value.startsWith('RCP-1001'))
+      await dialog.getByRole('button', { name: 'Review items', exact: true }).click()
+      await dialog.getByText('2 products matched').waitFor()
+      await page.waitForFunction(() => !document.querySelector('.stepper__pane--leaving'))
+      assert.equal(await dialog.locator('.cart-total strong').textContent(), '$264.00')
+      await dialog.getByText('Requires approval on every purchase').waitFor()
+      assert.equal(await page.evaluate(() => document.activeElement?.classList.contains('stepper__pane')), true)
+      await page.screenshot({ path: `qa/react-bits-review-${theme}-${width}.png`, fullPage: true })
+      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false)
+      const fits = await dialog.evaluate(el => { const r = el.getBoundingClientRect(); return r.left >= 0 && r.right <= innerWidth && el.scrollWidth <= el.clientWidth })
+      assert.equal(fits, true, `Quick Order overflows at ${theme} ${width}`)
+      await dialog.getByRole('button', { name: 'Edit list' }).click()
+      await page.getByLabel('SKU, quantity', { exact: true }).waitFor()
+      assert.match(await page.getByLabel('SKU, quantity', { exact: true }).inputValue(), /RCP-4025/)
+      await page.getByLabel('SKU, quantity', { exact: true }).fill('RCP-2040,1')
+      await dialog.getByRole('button', { name: 'Review items', exact: true }).click()
+      await dialog.getByText('1 products matched').waitFor()
+      await dialog.getByRole('button', { name: 'Add matched items to cart' }).click()
+      await dialog.getByText('Location cart', { exact: true }).waitFor()
+      await page.keyboard.press('Escape')
+      await page.getByRole('button', { name: 'Order by SKU', exact: true }).click()
+      assert.equal(await page.getByLabel('SKU, quantity', { exact: true }).inputValue(), '')
+      await page.keyboard.press('Escape')
+    }
+  }
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.getByRole('radio', { name: '3 months', exact: true }).click()
+  assert.equal(await page.locator('.spend-readout > strong').textContent(), '$13,310')
+  await page.keyboard.press('End')
+  assert.equal(await page.getByRole('radio', { name: '6 months', exact: true }).getAttribute('aria-checked'), 'true')
+  await page.keyboard.press('Home')
+  assert.equal(await page.getByRole('radio', { name: '3 months', exact: true }).getAttribute('aria-checked'), 'true')
+  await page.getByRole('radio', { name: '6 months', exact: true }).focus()
+  await page.keyboard.press('Enter')
+  assert.equal(await page.getByRole('radio', { name: '6 months', exact: true }).getAttribute('aria-checked'), 'true')
+  await page.getByRole('button', { name: 'Order by SKU', exact: true }).click()
+  await page.getByLabel('SKU, quantity', { exact: true }).fill('RCP-1001,1')
+  await dialog.getByRole('button', { name: 'Review items', exact: true }).click()
+  await dialog.getByText('1 products matched').waitFor()
+  await page.waitForFunction(() => !document.querySelector('.stepper__pane--leaving'))
+  assert.deepEqual(errors, [])
+  console.log('Passed: CSV import, invalid-row gating, merged quantities and subtotal, approval labels, edit/revalidation, fresh reopening, cart addition, focus transfer, both themes at 1440/390/320px, keyboard period selection, reduced motion, and no runtime errors.')
+} finally { await browser.close() }
